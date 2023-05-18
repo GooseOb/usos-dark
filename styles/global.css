@@ -1,0 +1,47 @@
+:root {
+    --font-color-reverse: #000;
+    --background-reverse: #ccc;
+
+    --background: #222;
+    --background-secondary: #333;
+
+    --font-color: #fff;
+}
+
+html,
+main-panel,
+.wrtext table.grey > * > :is(tr.even, tr.strong) > td,
+.usos-ui table.grey > * > tr > td,
+.usos-ui table.wrnav tr.even_row td {
+    background-color: var(--background);
+}
+
+p {
+    mix-blend-mode: difference;
+}
+
+body {
+    background: #111;
+}
+
+#footer-logo, #search_logo, .radio {
+    filter: contrast(0.5);
+}
+
+.wrtext table.grey > * > tr > td,
+usos-module-link-tile:hover,
+.usos-ui table.wrnav tr.odd_row td {
+    background-color: var(--background-secondary);
+}
+
+usos-module-link-tile {
+    background-color: #111;
+}
+
+.schedimg {
+    filter: invert(1);
+}
+
+.usos-ui :is(input[type="text"], input[type="textbox"], input[type="file"], input[type="email"], input[type="url"], input[type="number"], input[type="date"], textarea, select) {
+    background-color: #111;
+}
