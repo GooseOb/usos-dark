@@ -18,10 +18,14 @@ const sGLOBAL = `:root {
 --background-secondary: #333;
 
 --font-color: #fff;
+
+--grey: #999;
 }
 
 html,
 main-panel,
+#uwb-main-column .uwb-white-content,
+.uwb-sidepanel,
 .wrtext table.grey > * > :is(tr.even, tr.strong) > td,
 .usos-ui table.grey > * > tr > td,
 .usos-ui table.wrnav tr.even_row td {
@@ -40,8 +44,10 @@ background: #111;
 filter: contrast(0.5);
 }
 
-.wrtext table.grey > * > tr > td,
 usos-module-link-tile:hover,
+#uwb-side-column,
+.wrtext table.grey > * > tr > td,
+.usos-ui table.grey > *.autostrong > tr:nth-child(odd) > td,
 .usos-ui table.wrnav tr.odd_row td {
 background-color: var(--background-secondary);
 }
@@ -68,13 +74,15 @@ filter: invert(1);
 }`;
 (function () {
 const applyStyles = async (el, cssText) => {
+	if (!el)
+		return;
 	const styles = new CSSStyleSheet;
 	await styles.replace(cssText);
 	el.adoptedStyleSheets.push(styles);
 };
-const hamburger = document.querySelector('menu-top').shadowRoot
-	.querySelector('menu-top-hamburger').shadowRoot;
-const copyright = document.querySelector('usos-copyright').shadowRoot;
+const hamburger = document.querySelector('menu-top')?.shadowRoot
+	.querySelector('menu-top-hamburger')?.shadowRoot;
+const copyright = document.querySelector('usos-copyright')?.shadowRoot;
 applyStyles(document, sGLOBAL);
 applyStyles(hamburger, sHAMBURGER);
 applyStyles(copyright, sCOPYRIGHT);
