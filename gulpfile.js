@@ -1,26 +1,60 @@
-const gulp = require('gulp');
+const { dest, watch, series } = require('gulp');
 const ts = require('gulp-typescript');
 const tsProject = ts.createProject('tsconfig.json');
-const replace = require('gulp-replace');
-const { readFileSync, promises: { readFile } } = require('fs');
+const { readFile } = require('fs/promises');
 const path = require('path');
+const through2 = require('through2');
 
-const header = readFile('header.txt', 'utf-8');
+let header;
+const updateHeader = async (done) => {
+	header = await readFile('header.txt', 'utf-8');
+	done?.();
+};
 
-const getStyle = name => readFileSync(path.resolve('styles', name), 'utf-8');
-const styleImportRegex = /declare\s+(const s[A-Z_]+):\s*string;\s*\/\/\s*(\S+.css)/g;
-const styleImportReplacer = ($0, $1, $2) => $1 + ' = `' + getStyle($2) + '`;';
+const replaceAsync = async (str, regex, replacer) => {
+	const promises = [];
+	str.replace(regex, (...args) => {
+		promises.push(replacer(...args));
+		return '';
+	});
+	const data = await Promise.all(promises);
+	return str.replace(regex, () => data.shift());
+};
 
-const process = async () => tsProject.src()
-	.pipe(replace(styleImportRegex, styleImportReplacer))
+const processText = (text) => `\n(function(){\n${text
+	.replace(/ {4}/g, '\t')
+}\n})();`.replace(/^/, header);
+
+const getStyle = (name) => readFile(path.resolve('styles', name), 'utf-8');
+const importStyles = async (text) => replaceAsync(text,
+	/declare\s+(const s[A-Z_]+):\s*string;\s*\/\/\s*(\S+.css)/g,
+	async ($0, $1, $2) => $1 + ' = `' + (await getStyle($2)) + '`;'
+);
+
+const inlinePluginHelper = (file, done, result) => {
+	if (file.isBuffer())
+		file.contents = Buffer.from(result);
+	done(null, file);
+};
+const inlinePlugin = (cb) =>
+	through2.obj((file, _, done) => {
+		inlinePluginHelper(file, done, cb(file.contents.toString()));
+	});
+const inlineAsyncPlugin = (cb) =>
+	through2.obj(async (file, _, done) => {
+		inlinePluginHelper(file, done, await cb(file.contents.toString()));
+	});
+
+const process = () => tsProject.src()
+	.pipe(inlineAsyncPlugin(importStyles))
 	.pipe(tsProject()).js
-	.pipe(replace(/ {4}/g, '\t'))
-	.pipe(replace(/\n\t/g, '\n'))
-	.pipe(replace(/^/, await header))
-	.pipe(gulp.dest('.'));
+	.pipe(inlinePlugin(processText))
+	.pipe(dest('.'));
 
-exports.default = () => {
+exports.default = async () => {
+	await updateHeader();
 	process();
-	gulp.watch('index.ts', process);
-	gulp.watch('styles/*.css', process);
+	watch('header.txt', series(updateHeader, process))
+	watch('index.ts', process);
+	watch('styles/*.css', process);
 };
