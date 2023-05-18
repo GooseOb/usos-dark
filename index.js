@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USOS dark mode
 // @namespace    https://greasyfork.org/en/users/901750-gooseob
-// @version      1.1
+// @version      1.2
 // @description  dark mode of USOS
 // @author       GooseOb
 // @license      MIT
@@ -25,7 +25,8 @@ const sGLOBAL = `:root {
 html,
 main-panel,
 #uwb-main-column .uwb-white-content,
-.toolstipster-content,
+.ua-tooltip.ua-tooltip-badge .tooltipster-box,
+.ua-tooltip.ua-tooltip-default .tooltipster-box,
 .uwb-sidepanel,
 .wrtext table.grey > * > :is(tr.even, tr.strong) > td,
 .usos-ui table.grey > * > tr > td,
