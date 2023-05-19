@@ -18,3 +18,16 @@ applyStyles(hamburger, sHAMBURGER);
 applyStyles(copyright, sCOPYRIGHT);
 for (const el of document.querySelectorAll('usos-selector'))
 	applyStyles(el.shadowRoot, sSELECTOR);
+
+const tableColors = {
+	'rgb(236, 236, 236)': '#555',
+	'rgb(216, 216, 216)': '#444',
+	'rgb(238, 238, 221)': '#444',
+	'rgb(222, 222, 205)': '#333',
+	'rgb(156, 164, 152)': '#222',
+};
+
+for (const td of document.querySelectorAll('tbody > tr > td, tbody > tr > th') as NodeListOf<HTMLTableCellElement>) {
+	const clr = tableColors[td.style.backgroundColor as keyof typeof tableColors];
+	if (clr) td.style.backgroundColor = clr;
+}

@@ -53,3 +53,7 @@ usos-module-link-tile {
 .usos-ui :is(input[type="text"], input[type="textbox"], input[type="file"], input[type="email"], input[type="url"], input[type="number"], input[type="date"], textarea, select) {
     background-color: #111;
 }
+
+tbody > tr > td:has(div) {
+    background-color: var(--background-secondary) !important;
+}

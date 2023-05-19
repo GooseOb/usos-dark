@@ -26,7 +26,7 @@ const processText = (text) => `\n(function(){\n${text
 }\n})();`.replace(/^/, header);
 
 const getStyle = (name) => readFile(path.resolve('styles', name), 'utf-8');
-const importStyles = async (text) => replaceAsync(text,
+const importStyles = (text) => replaceAsync(text,
 	/declare\s+(const s[A-Z_]+):\s*string;\s*\/\/\s*(\S+.css)/g,
 	async ($0, $1, $2) => $1 + ' = `' + (await getStyle($2)) + '`;'
 );

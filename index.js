@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USOS dark mode
 // @namespace    https://greasyfork.org/en/users/901750-gooseob
-// @version      1.2.1
+// @version      1.3
 // @description  dark mode of USOS
 // @author       GooseOb
 // @license      MIT
@@ -65,6 +65,10 @@ usos-module-link-tile {
 
 .usos-ui :is(input[type="text"], input[type="textbox"], input[type="file"], input[type="email"], input[type="url"], input[type="number"], input[type="date"], textarea, select) {
 	background-color: #111;
+}
+
+tbody > tr > td:has(div) {
+	background-color: var(--background-secondary) !important;
 }`;
 const sSELECTOR = `input {
 	background-color: #000;
@@ -90,4 +94,16 @@ applyStyles(hamburger, sHAMBURGER);
 applyStyles(copyright, sCOPYRIGHT);
 for (const el of document.querySelectorAll('usos-selector'))
 	applyStyles(el.shadowRoot, sSELECTOR);
+const tableColors = {
+	'rgb(236, 236, 236)': '#555',
+	'rgb(216, 216, 216)': '#444',
+	'rgb(238, 238, 221)': '#444',
+	'rgb(222, 222, 205)': '#333',
+	'rgb(156, 164, 152)': '#222',
+};
+for (const td of document.querySelectorAll('tbody > tr > td, tbody > tr > th')) {
+	const clr = tableColors[td.style.backgroundColor];
+	if (clr)
+		td.style.backgroundColor = clr;
+}
 })();
