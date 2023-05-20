@@ -1,11 +1,12 @@
 {
   "name": "usos-dark",
+  "author": "GooseOb",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GooseOb/usos-dark.git"
   },
-  "author": "GooseOb",
-  "license": "MIT",
+  "type": "module",
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
