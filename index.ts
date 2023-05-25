@@ -25,6 +25,7 @@ const tableColors = {
 	'rgb(238, 238, 221)': '#444',
 	'rgb(222, 222, 205)': '#333',
 	'rgb(156, 164, 152)': '#222',
+	'rgb(255, 255, 255)': '#333',
 };
 
 for (const td of document.querySelectorAll('tbody > tr > td, tbody > tr > th') as NodeListOf<HTMLTableCellElement>) {

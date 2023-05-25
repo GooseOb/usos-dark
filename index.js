@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USOS dark mode
 // @namespace    https://greasyfork.org/en/users/901750-gooseob
-// @version      1.3
+// @version      1.4
 // @description  dark mode of USOS
 // @author       GooseOb
 // @license      MIT
@@ -50,6 +50,7 @@ body {
 usos-module-link-tile:hover,
 #uwb-side-column,
 .wrtext table.grey > * > tr > td,
+.usos-ui table.grey > * > :is(tr.even, tr.strong) > td,
 .usos-ui table.grey > *.autostrong > tr:nth-child(odd) > td,
 .usos-ui table.wrnav tr.odd_row td {
 	background-color: var(--background-secondary);
@@ -100,6 +101,7 @@ const tableColors = {
 	'rgb(238, 238, 221)': '#444',
 	'rgb(222, 222, 205)': '#333',
 	'rgb(156, 164, 152)': '#222',
+	'rgb(255, 255, 255)': '#333',
 };
 for (const td of document.querySelectorAll('tbody > tr > td, tbody > tr > th')) {
 	const clr = tableColors[td.style.backgroundColor];

@@ -37,6 +37,7 @@ body {
 usos-module-link-tile:hover,
 #uwb-side-column,
 .wrtext table.grey > * > tr > td,
+.usos-ui table.grey > * > :is(tr.even, tr.strong) > td,
 .usos-ui table.grey > *.autostrong > tr:nth-child(odd) > td,
 .usos-ui table.wrnav tr.odd_row td {
     background-color: var(--background-secondary);
