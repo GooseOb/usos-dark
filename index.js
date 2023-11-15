@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USOS dark mode
 // @namespace    https://greasyfork.org/en/users/901750-gooseob
-// @version      1.4.1
+// @version      1.5.0
 // @description  dark mode of USOS
 // @author       GooseOb
 // @license      MIT
@@ -18,13 +18,15 @@ var applyStyles = async (el, cssText) => {
   await styles.replace(cssText);
   el.adoptedStyleSheets.push(styles);
 };
-var hamburger = document.querySelector("menu-top")?.shadowRoot.querySelector("menu-top-hamburger")?.shadowRoot;
-var copyright = document.querySelector("usos-copyright")?.shadowRoot;
-applyStyles(document, ":root { --font-color-reverse: #000; --background-reverse: #ccc; --background: #222; --background-secondary: #333; --font-color: #fff; --grey: #999; } html, main-panel, #uwb-main-column .uwb-white-content, .ua-tooltip.ua-tooltip-badge .tooltipster-box, .ua-tooltip.ua-tooltip-default .tooltipster-box, .uwb-sidepanel, .wrtext table.grey > * > :is(tr.even, tr.strong) > td, .usos-ui table.grey > * > tr > td, .usos-ui table.wrnav tr.even_row td { background-color: var(--background); } p { mix-blend-mode: difference; } body { background: #111; } #footer-logo, #search_logo, .radio { filter: contrast(0.5); } usos-module-link-tile:hover, #uwb-side-column, .wrtext table.grey > * > tr > td, .usos-ui table.grey > * > :is(tr.even, tr.strong) > td, .usos-ui table.grey > *.autostrong > tr:nth-child(odd) > td, .usos-ui table.wrnav tr.odd_row td { background-color: var(--background-secondary); } usos-module-link-tile { background-color: #111; } .schedimg { filter: invert(1); } .usos-ui :is(input[type=");
-applyStyles(hamburger, "#hamburger { filter: invert(1); }");
-applyStyles(copyright, "#layoutCopyright { color: #fff; }");
+var getShadowRoot = (selector) => document.querySelector(selector)?.shadowRoot;
+applyStyles(document, ":root { --font-color-reverse: #000; --background-reverse: #ccc; --background: #222; --background-secondary: #333; --font-color: #fff; --grey: #999; } html, main-panel, #uwb-main-column .uwb-white-content, .ua-tooltip.ua-tooltip-badge .tooltipster-box, .ua-tooltip.ua-tooltip-default .tooltipster-box, .uwb-sidepanel, .wrtext table.grey > * > :is(tr.even, tr.strong) > td, .usos-ui table.grey > * > tr > td, .usos-ui table.wrnav tr.even_row td { background-color: var(--background); } .well, .sticky-element, .panel { background: #222; } p { mix-blend-mode: difference; } body, usos-module-link-tile, .panel select, .panel input, .panel-heading.panel-heading { background-image: none; background: #111; color: #fff } #footer-logo, #search_logo, .radio { filter: contrast(0.5); } usos-module-link-tile:hover, #uwb-side-column, .wrtext table.grey > * > tr > td, .usos-ui table.grey > * > :is(tr.even, tr.strong) > td, .usos-ui table.grey > *.autostrong > tr:nth-child(odd) > td, .usos-ui table.wrnav tr.odd_row td { background-color: var(--background-secondary); } .schedimg { filter: invert(1); } .usos-ui :is(input[type=");
+applyStyles(getShadowRoot("menu-top").querySelector("menu-top-hamburger")?.shadowRoot, "#hamburger { filter: invert(1); }");
+applyStyles(getShadowRoot("usos-copyright"), "#layoutCopyright { color: #fff; }");
 for (const el of document.querySelectorAll("usos-selector"))
   applyStyles(el.shadowRoot, "input { background-color: #000; }");
+applyStyles(getShadowRoot("usos-timetable"), "#timetable { --timetable-color-6: #222; }");
+for (const el of document.querySelectorAll("timetable-day"))
+  applyStyles(el.shadowRoot, ":host { background: black; }");
 var tableColors = {
   "rgb(236, 236, 236)": "#555",
   "rgb(216, 216, 216)": "#444",
@@ -33,9 +35,8 @@ var tableColors = {
   "rgb(156, 164, 152)": "#222",
   "rgb(255, 255, 255)": "#333"
 };
-for (const td of document.querySelectorAll("tbody > tr > td, tbody > tr > th")) {
-  const clr = tableColors[td.style.backgroundColor];
-  if (clr)
-    td.style.backgroundColor = clr;
-}
+setTimeout(() => {
+  for (const td of document.querySelectorAll("tbody > tr > td, tbody > tr > th"))
+    td.style.backgroundColor = tableColors[td.style.backgroundColor] || "#000";
+}, 100);
 })()

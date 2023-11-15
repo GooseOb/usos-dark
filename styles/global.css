@@ -22,12 +22,20 @@ main-panel,
     background-color: var(--background);
 }
 
+.well, .sticky-element, .panel {
+    background: #222;
+}
+
 p {
     mix-blend-mode: difference;
 }
 
-body {
+body, usos-module-link-tile,
+.panel select, .panel input,
+.panel-heading.panel-heading {
+    background-image: none;
     background: #111;
+    color: #fff
 }
 
 #footer-logo, #search_logo, .radio {
@@ -41,10 +49,6 @@ usos-module-link-tile:hover,
 .usos-ui table.grey > *.autostrong > tr:nth-child(odd) > td,
 .usos-ui table.wrnav tr.odd_row td {
     background-color: var(--background-secondary);
-}
-
-usos-module-link-tile {
-    background-color: #111;
 }
 
 .schedimg {

@@ -1,23 +1,35 @@
-declare const sGLOBAL: string; // global.css
-declare const sSELECTOR: string; // selector.css
-declare const sCOPYRIGHT: string; // copyright.css
-declare const sHAMBURGER: string; // hamburger.css
+declare const
+	sGLOBAL: 'global.css',
+	sSELECTOR: 'selector.css',
+	sCOPYRIGHT: 'copyright.css',
+	sHAMBURGER: 'hamburger.css',
+	sTIMETABLE_DAY: 'timetable-day.css',
+	sTIMETABLE: 'timetable.css';
 
 const applyStyles = async (el: DocumentOrShadowRoot, cssText: string) => {
 	if (!el) return;
 	const styles = new CSSStyleSheet;
 	await styles.replace(cssText);
-	el.adoptedStyleSheets.push(styles)
+	el.adoptedStyleSheets.push(styles);
 };
-const hamburger = document.querySelector('menu-top')?.shadowRoot
-	.querySelector('menu-top-hamburger')?.shadowRoot;
-const copyright = document.querySelector('usos-copyright')?.shadowRoot;
+const getShadowRoot = (selector: string) => document.querySelector(selector)?.shadowRoot;
 
 applyStyles(document, sGLOBAL);
-applyStyles(hamburger, sHAMBURGER);
-applyStyles(copyright, sCOPYRIGHT);
+
+applyStyles(
+	getShadowRoot('menu-top')
+		.querySelector('menu-top-hamburger')?.shadowRoot,
+	sHAMBURGER
+);
+
+applyStyles(getShadowRoot('usos-copyright'), sCOPYRIGHT);
+
 for (const el of document.querySelectorAll('usos-selector'))
 	applyStyles(el.shadowRoot, sSELECTOR);
+
+applyStyles(getShadowRoot('usos-timetable'), sTIMETABLE);
+for (const el of document.querySelectorAll('timetable-day'))
+	applyStyles(el.shadowRoot, sTIMETABLE_DAY);
 
 type RgbString = `rgb(${number}, ${number}, ${number})`;
 
@@ -31,7 +43,8 @@ const tableColors = {
 } satisfies Record<RgbString, string>;
 type TableColor = keyof typeof tableColors;
 
-for (const td of document.querySelectorAll('tbody > tr > td, tbody > tr > th') as NodeListOf<HTMLTableCellElement>) {
-	const clr = tableColors[td.style.backgroundColor as TableColor];
-	if (clr) td.style.backgroundColor = clr;
-}
+setTimeout(() => {
+	for (const td of document.querySelectorAll<HTMLTableCellElement>('tbody > tr > td, tbody > tr > th'))
+		td.style.backgroundColor =
+			tableColors[td.style.backgroundColor as TableColor] || '#000';
+}, 100);
