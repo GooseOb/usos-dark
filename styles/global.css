@@ -27,10 +27,6 @@ main-panel,
     background: #222;
 }
 
-p {
-    mix-blend-mode: difference;
-}
-
 body, usos-module-link-tile,
 .panel select, .panel input,
 .panel-heading.panel-heading {

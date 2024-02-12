@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         USOS dark mode
 // @namespace    https://greasyfork.org/en/users/901750-gooseob
-// @version      1.6.0
+// @version      1.7.0
 // @description  dark mode of USOS
 // @author       GooseOb
 // @license      MIT
@@ -24,7 +24,7 @@ var applyStylesForEach = (selector, styles) => {
     applyStyles(el.shadowRoot, styles);
 };
 var getShadowRoot = (selector) => document.querySelector(selector)?.shadowRoot;
-applyStyles(document, ":root { --font-color-reverse: #000; --background-reverse: #ccc; --background: #222; --background-secondary: #333; --font-color: #fff; --grey: #999; } html, main-panel, #uwb-main-column .uwb-white-content, .ua-tooltip.ua-tooltip-badge .tooltipster-box, .ua-tooltip.ua-tooltip-default .tooltipster-box, .uwb-sidepanel, .wrtext table.grey > * > :is(tr.even, tr.strong) > td, .usos-ui table.grey > * > tr > td, .usos-ui table.wrnav tr.even_row td { background-color: var(--background); color: #fff } .well, .sticky-element, .panel { background: #222; } p { mix-blend-mode: difference; } body, usos-module-link-tile, .panel select, .panel input, .panel-heading.panel-heading { background-image: none; background: #111; color: #fff } #footer-logo, #search_logo, .radio { filter: contrast(0.5); } usos-module-link-tile:hover, #uwb-side-column, .wrtext table.grey > * > tr > td, .usos-ui table.grey > * > :is(tr.even, tr.strong) > td, .usos-ui table.grey > *.autostrong > tr:nth-child(odd) > td, .usos-ui table.wrnav tr.odd_row td { background-color: var(--background-secondary); } .schedimg { filter: invert(1); } .usos-ui :is(input[type=");
+applyStyles(document, ":root { --font-color-reverse: #000; --background-reverse: #ccc; --background: #222; --background-secondary: #333; --font-color: #fff; --grey: #999; } html, main-panel, #uwb-main-column .uwb-white-content, .ua-tooltip.ua-tooltip-badge .tooltipster-box, .ua-tooltip.ua-tooltip-default .tooltipster-box, .uwb-sidepanel, .wrtext table.grey > * > :is(tr.even, tr.strong) > td, .usos-ui table.grey > * > tr > td, .usos-ui table.wrnav tr.even_row td { background-color: var(--background); color: #fff } .well, .sticky-element, .panel { background: #222; } /*p {*/ /* mix-blend-mode: difference;*/ /*}*/ body, usos-module-link-tile, .panel select, .panel input, .panel-heading.panel-heading { background-image: none; background: #111; color: #fff } #footer-logo, #search_logo, .radio { filter: contrast(0.5); } usos-module-link-tile:hover, #uwb-side-column, .wrtext table.grey > * > tr > td, .usos-ui table.grey > * > :is(tr.even, tr.strong) > td, .usos-ui table.grey > *.autostrong > tr:nth-child(odd) > td, .usos-ui table.wrnav tr.odd_row td { background-color: var(--background-secondary); } .schedimg { filter: invert(1); } .usos-ui :is(input[type=");
 applyStyles(getShadowRoot("menu-top").querySelector("menu-top-hamburger")?.shadowRoot, "#hamburger { filter: invert(1); }");
 applyStyles(getShadowRoot("usos-copyright"), "#layoutCopyright { color: #fff; }");
 applyStylesForEach("usos-selector", "input { background-color: #000; }");
