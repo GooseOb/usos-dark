@@ -16,7 +16,7 @@ const applyStyles = (el: DocumentOrShadowRoot, cssText: string) => {
 const applyStylesForEach = (selector: string, styles: string) => {
 	for (const el of document.querySelectorAll(selector))
 		applyStyles(el.shadowRoot, styles);
-}
+};
 const getShadowRoot = (selector: string) => document.querySelector(selector)?.shadowRoot;
 
 applyStyles(document, sGLOBAL);
