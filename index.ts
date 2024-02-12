@@ -6,12 +6,17 @@ declare const
 	sTIMETABLE_DAY: 'timetable-day.css',
 	sTIMETABLE: 'timetable.css';
 
-const applyStyles = async (el: DocumentOrShadowRoot, cssText: string) => {
+const applyStyles = (el: DocumentOrShadowRoot, cssText: string) => {
 	if (!el) return;
 	const styles = new CSSStyleSheet;
-	await styles.replace(cssText);
-	el.adoptedStyleSheets.push(styles);
+	styles.replace(cssText).then(() => {
+		el.adoptedStyleSheets.push(styles);
+	});
 };
+const applyStylesForEach = (selector: string, styles: string) => {
+	for (const el of document.querySelectorAll(selector))
+		applyStyles(el.shadowRoot, styles);
+}
 const getShadowRoot = (selector: string) => document.querySelector(selector)?.shadowRoot;
 
 applyStyles(document, sGLOBAL);
@@ -24,12 +29,10 @@ applyStyles(
 
 applyStyles(getShadowRoot('usos-copyright'), sCOPYRIGHT);
 
-for (const el of document.querySelectorAll('usos-selector'))
-	applyStyles(el.shadowRoot, sSELECTOR);
+applyStylesForEach('usos-selector', sSELECTOR);
 
 applyStyles(getShadowRoot('usos-timetable'), sTIMETABLE);
-for (const el of document.querySelectorAll('timetable-day'))
-	applyStyles(el.shadowRoot, sTIMETABLE_DAY);
+applyStylesForEach('timetable-day', sTIMETABLE_DAY);
 
 type RgbString = `rgb(${number}, ${number}, ${number})`;
 

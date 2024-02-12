@@ -20,6 +20,7 @@ main-panel,
 .usos-ui table.grey > * > tr > td,
 .usos-ui table.wrnav tr.even_row td {
     background-color: var(--background);
+    color: #fff
 }
 
 .well, .sticky-element, .panel {
