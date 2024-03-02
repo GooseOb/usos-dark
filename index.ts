@@ -17,13 +17,12 @@ const applyStylesForEach = (selector: string, styles: string) => {
 	for (const el of document.querySelectorAll(selector))
 		applyStyles(el.shadowRoot, styles);
 };
-const getShadowRoot = (selector: string) => document.querySelector(selector)?.shadowRoot;
+const getShadowRoot = (selector: string, parent: ParentNode = document) => parent.querySelector(selector)?.shadowRoot;
 
 applyStyles(document, sGLOBAL);
 
 applyStyles(
-	getShadowRoot('menu-top')
-		.querySelector('menu-top-hamburger')?.shadowRoot,
+	getShadowRoot('menu-top-hamburger', getShadowRoot('menu-top')),
 	sHAMBURGER
 );
 
