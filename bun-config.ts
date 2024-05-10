@@ -11,6 +11,6 @@ for (const [, varName, fileName] of styleDeclarations)
     `"${(await readFile("styles/" + fileName, "utf8")).replace(/\s+/gs, " ")}"`;
 
 export default {
-  naming: "dist.js",
+  naming: "dist/index.js",
   define,
 };
