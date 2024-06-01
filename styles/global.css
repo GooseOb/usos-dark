@@ -1,13 +1,13 @@
 :root {
-    --font-color-reverse: #000;
-    --background-reverse: #ccc;
+  --font-color-reverse: #000;
+  --background-reverse: #ccc;
 
-    --background: #222;
-    --background-secondary: #333;
+  --background: #222;
+  --background-secondary: #333;
 
-    --font-color: #fff;
+  --font-color: #fff;
 
-    --grey: #999;
+  --grey: #999;
 }
 
 html,
@@ -19,24 +19,29 @@ main-panel,
 .wrtext table.grey > * > :is(tr.even, tr.strong) > td,
 .usos-ui table.grey > * > tr > td,
 .usos-ui table.wrnav tr.even_row td {
-    background-color: var(--background);
-    color: #fff
+  background-color: var(--background);
+  color: #fff;
 }
 
-.well, .sticky-element, .panel {
-    background: #222;
+.well,
+.sticky-element,
+.panel {
+  background: #222;
 }
 
-body, usos-module-link-tile,
-.panel select, .panel input,
+body,
+usos-module-link-tile,
+.panel select,
+.panel input,
 .panel-heading.panel-heading {
-    background-image: none;
-    background: #111;
-    color: #fff
+  background: #111;
+  color: #fff;
 }
 
-#footer-logo, #search_logo, .radio {
-    filter: contrast(0.5);
+#footer-logo,
+#search_logo,
+.radio {
+  filter: contrast(0.5);
 }
 
 usos-module-link-tile:hover,
@@ -45,17 +50,28 @@ usos-module-link-tile:hover,
 .usos-ui table.grey > * > :is(tr.even, tr.strong) > td,
 .usos-ui table.grey > *.autostrong > tr:nth-child(odd) > td,
 .usos-ui table.wrnav tr.odd_row td {
-    background-color: var(--background-secondary);
+  background-color: var(--background-secondary);
 }
 
 .schedimg {
-    filter: invert(1);
+  filter: invert(1);
 }
 
-.usos-ui :is(input[type="text"], input[type="textbox"], input[type="file"], input[type="email"], input[type="url"], input[type="number"], input[type="date"], textarea, select) {
-    background-color: #111;
+.usos-ui
+  :is(
+    input[type="text"],
+    input[type="textbox"],
+    input[type="file"],
+    input[type="email"],
+    input[type="url"],
+    input[type="number"],
+    input[type="date"],
+    textarea,
+    select
+  ) {
+  background-color: #111;
 }
 
 tbody > tr > td:has(div) {
-    background-color: var(--background-secondary) !important;
+  background-color: var(--background-secondary) !important;
 }
