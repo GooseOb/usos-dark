@@ -13,7 +13,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "bun-build-userscript": "^2.1.2",
+    "bun-build-userscript": "^2.1.4",
     "typescript": "^5.7.2"
   }
 }
