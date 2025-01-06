@@ -1,10 +1,11 @@
 import { readFile } from "node:fs/promises";
+import type { BuildConfigs } from "bun-build-userscript";
 
-export const bun = {
+export const bun: BuildConfigs["bun"] = {
   naming: "dist/index.js",
 };
 
-export const userscript = {
+export const userscript: BuildConfigs["userscript"] = {
   entry: "src",
   before: async ({ bun }) => {
     bun.define = {};
