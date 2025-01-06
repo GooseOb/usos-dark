@@ -8,12 +8,12 @@
     "url": "git+https://github.com/GooseOb/usos-dark.git"
   },
   "scripts": {
-    "build": "build-userscript --cfg bun-config.ts --build",
-    "dev": "build-userscript --cfg bun-config.ts"
+    "build": "build-userscript --cfg build-config.ts --build",
+    "dev": "build-userscript --cfg build-config.ts"
   },
   "type": "module",
   "devDependencies": {
-    "bun-build-userscript": "^1.3.4",
-    "typescript": "^5.2.2"
+    "bun-build-userscript": "^2.0.0",
+    "typescript": "^5.7.2"
   }
 }
