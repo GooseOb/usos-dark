@@ -1,19 +1,19 @@
 {
-  "name": "usos-dark",
-  "version": "1.7.2",
-  "author": "GooseOb",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GooseOb/usos-dark.git"
-  },
-  "scripts": {
-    "build": "build-userscript --cfg build-config.ts",
-    "dev": "build-userscript --cfg build-config.ts --watch"
-  },
-  "type": "module",
-  "devDependencies": {
-    "bun-build-userscript": "^2.1.4",
-    "typescript": "^5.7.2"
-  }
+	"name": "usos-dark",
+	"version": "1.7.3",
+	"author": "GooseOb",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/GooseOb/usos-dark.git"
+	},
+	"scripts": {
+		"build": "build-userscript --cfg build-config.ts",
+		"dev": "build-userscript --cfg build-config.ts --watch"
+	},
+	"type": "module",
+	"devDependencies": {
+		"bun-build-userscript": "^2.1.4",
+		"typescript": "^5.7.2"
+	}
 }

@@ -2,10 +2,10 @@
 // @name         USOS dark mode
 // @namespace    https://greasyfork.org/en/users/901750-gooseob
 // @version      {version}
-// @description  dark mode of USOS
+// @description  dark theme for USOS
 // @author       GooseOb
 // @license      MIT
-// @match        https://usosweb.uni.lodz.pl/*
+// @include      https://usosweb.*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=usosweb.uni.lodz.pl
 // @grant        none
 // ==/UserScript==
