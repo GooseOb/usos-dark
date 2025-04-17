@@ -1,0 +1,7 @@
+#input-cont > label > span {
+	color: var(--accent);
+}
+#input-cont > input {
+	border: 1px solid var(--accent);
+	color: white;
+}
