@@ -4,9 +4,10 @@ declare const sGLOBAL: "global.css",
 	sHAMBURGER: "hamburger.css",
 	sTIMETABLE_DAY: "timetable-day.css",
 	sTIMETABLE: "timetable.css",
-	sTEXT_FIELD: "text-field.css";
+	sTEXT_FIELD: "text-field.css",
+	sDIALOG: "dialog.css";
 
-const applyStyles = (el: DocumentOrShadowRoot, cssText: string) => {
+const style = (el: DocumentOrShadowRoot, cssText: string) => {
 	if (el) {
 		const styles = new CSSStyleSheet();
 		styles.replace(cssText).then(() => {
@@ -24,31 +25,33 @@ const forEachShadowRoot = (
 	}
 };
 
-const applyStylesForEach = (selector: string, styles: string) => {
+const styleEach = (selector: string, styles: string) => {
 	forEachShadowRoot(selector, (shadowRoot) => {
-		applyStyles(shadowRoot, styles);
+		style(shadowRoot, styles);
 	});
 };
 
 const getShadowRoot = (selector: string, parent: ParentNode = document) =>
 	parent.querySelector(selector)?.shadowRoot;
 
-applyStyles(document, sGLOBAL);
+style(document, sGLOBAL);
 
-applyStyles(
+style(
 	getShadowRoot("menu-top-hamburger", getShadowRoot("menu-top")),
 	sHAMBURGER,
 );
 
-applyStyles(getShadowRoot("usos-copyright"), sCOPYRIGHT);
+style(getShadowRoot("usos-copyright"), sCOPYRIGHT);
 
 forEachShadowRoot("usos-selector", (shadowRoot) => {
-	applyStyles(shadowRoot, sSELECTOR);
-	applyStyles(getShadowRoot("text-field", shadowRoot), sTEXT_FIELD);
+	style(shadowRoot, sSELECTOR);
+	style(getShadowRoot("text-field", shadowRoot), sTEXT_FIELD);
 });
 
-applyStyles(getShadowRoot("usos-timetable"), sTIMETABLE);
-applyStylesForEach("timetable-day", sTIMETABLE_DAY);
+style(getShadowRoot("usos-timetable"), sTIMETABLE);
+styleEach("timetable-day", sTIMETABLE_DAY);
+
+style(getShadowRoot("usos-dialog"), sDIALOG);
 
 type RgbString = `rgb(${number}, ${number}, ${number})`;
 
